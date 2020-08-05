@@ -30,7 +30,7 @@
             </li>
         </ul>
 
-        @auth
+
              <div class="my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -43,7 +43,7 @@
                     </li>
                 </ul>
             </div>
-        @endauth
+
     </div>
 </nav>
 
