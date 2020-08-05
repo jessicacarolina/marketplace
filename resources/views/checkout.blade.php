@@ -14,7 +14,7 @@
            <form action="" method="post">
                <div class="row">
                    <div class="col-md-12 form-group">
-                       <label>Número do Cartão</label>
+                       <label>Número do Cartão <span class="brand"></span></label>
                        <input type="text" class="form-control" name="card_number">
                    </div>
                </div>
@@ -43,4 +43,35 @@
        </div>
     </div>
 
+@endsection
+
+@section('scripts')
+    <script src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+    <script>
+        const sessionId = '{{session()->get('pagseguro_session_code')}}';
+
+        PagSeguroDirectPayment.setSessionId(sessionId);
+    </script>
+
+    <script>
+        let cardNumber = document.querySelector('input[name=card_number]');
+        let spanBrand = document.querySelector('span.brand');
+
+        cardNumber.addEventListener('keyup', function () {
+           if (cardNumber.value.length >= 6) {
+               PagSeguroDirectPayment.getBrand({
+                    cardBin: cardNumber.value.substr(0, 6),
+                    success: function (res) {
+                        spanBrand.innerHTML = res.brand.name;
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                    complete: function (res) {
+                        console.log('Complete: ', res);
+                    }
+                });
+           }
+        });
+    </script>
 @endsection

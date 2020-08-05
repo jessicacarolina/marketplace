@@ -51,5 +51,6 @@
     @include('flash::message')
     @yield('content')
 </div>
+@yield('scripts')
 </body>
 </html>
