@@ -38,9 +38,7 @@
                        <input type="text" class="form-control" name="card_cvv">
                    </div>
 
-                   <div class="col-md-12 installments form-group">
-
-                   </div>
+                   <div class="col-md-12 installments form-group"></div>
                </div>
 
                <button class="btn btn-success btn-lg processCheckout">Efetuar Pagamento</button>
@@ -79,7 +77,7 @@
                     complete: function (res) {
                         //console.log('Complete: ', res);
                     }
-                });
+               });
            }
         });
 
@@ -128,6 +126,7 @@
             for(let l of installments) {
                 select += `<option value="${l.quantity}|${l.installmentAmount}">${l.quantity}x de ${l.installmentAmount} - Total fica ${l.totalAmount}</option>`;
             }
+
 
             select += '</select>';
 
